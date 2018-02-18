@@ -64,7 +64,7 @@ void StrBin(string &input, string &support,vector<int>& array1,int &num, int&cur
 
 int main() {
 
-	//gfffffffffff
+	//
 	vector<int> array1;
 	string input;
 	string support;
