@@ -59,25 +59,34 @@ void StrBin(string &input, string &support, vector<int>& array1, int &num, int&c
 	}
 }
 
-//void summ(vector<int>& array1, vector<int>& array2,bool&z1,bool&z2) {
-//	if (array1.size()!= array2.size()) {
-//		if (array1.size() > array2.size) {
-//			for (int i = 0; i < ((array1.size()) - (array2.size)); i++) {
-//				array1.insert(array1.begin(), 0);
-//			}
-//		}
-//		else {
-//			for (int i = 0; i < ((array2.size()) - (array1.size)); i++) {
-//				array1.insert(array2.begin(), 0);
-//			}
-//		}
-//
-//	}
-//
-//
-//
-//
-//}
+void summ(vector<int>& array1, vector<int>& array2,bool&z1,bool&z2) {
+	if ((array1.size())!= (array2.size())) {
+		if ((array1.size()) > (array2.size())) {
+			for (int i = 0; i < ((array1.size()) - (array2.size())); i++) {
+				array2.insert(array2.begin(), 0);
+			}
+		}
+		else {
+			for (int i = 0; i < ((array2.size()) - (array1.size())); i++) {
+				array1.insert(array1.begin(), 0);
+			}
+		}
+
+	}
+
+	cout <<endl<< "ar1" << endl;
+	for (int i = 0; i < array1.size(); i++) {
+		cout << array1[i];
+	}
+	cout <<endl<< "ar2" << endl;
+
+	for (int i = 0; i < array2.size(); i++) {
+		cout << array2[i];
+	}
+
+
+
+}
 
 
 
@@ -144,7 +153,7 @@ int main() {
 		cout << array2[i];
 	}
 
-
+	summ(array1,array2,z1,z2);
 
 
 	system("pause");
