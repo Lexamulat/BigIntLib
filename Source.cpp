@@ -59,11 +59,25 @@ void StrBin(string &input, string &support, vector<int>& array1, int &num, int&c
 	}
 }
 
-void summ(vector<int>& array1, vector<int>& array2,bool&z1,bool&z2) {
-
-
-
-}
+//void summ(vector<int>& array1, vector<int>& array2,bool&z1,bool&z2) {
+//	if (array1.size()!= array2.size()) {
+//		if (array1.size() > array2.size) {
+//			for (int i = 0; i < ((array1.size()) - (array2.size)); i++) {
+//				array1.insert(array1.begin(), 0);
+//			}
+//		}
+//		else {
+//			for (int i = 0; i < ((array2.size()) - (array1.size)); i++) {
+//				array1.insert(array2.begin(), 0);
+//			}
+//		}
+//
+//	}
+//
+//
+//
+//
+//}
 
 
 
@@ -79,8 +93,8 @@ int main() {
 	bool end = 0;
 	cout << "enter 1" << endl;
 	cin >> input1;
-	/*cout << "enter 2" << endl;
-	cin >> input2;*/
+	cout << "enter 2" << endl;
+	cin >> input2;
 	int curr = 0;
 	int num;
 	bool f = 0;
@@ -88,13 +102,13 @@ int main() {
 	if (input1[0] == '-') {
 		z1 = 1;
 	}
-	/*bool z2= 0;
+	bool z2= 0;
 	if (input2[0] == '-') {
 		z1 = 1;
 	}
-*/
+
 	input1.erase(0, 1);
-	//input2.erase(0, 1);
+	input2.erase(0, 1);
 
 	cout <<"inp1:" <<input1 << endl;
 	
@@ -109,16 +123,26 @@ int main() {
 	}
 
 
-	//curr = 0;
-	//f = 0;
-	//StrBin(input2, support, array2, num, curr, end, f);
+	curr = 0;
+	f = 0;
+	end = 0;
+
+	cout << endl << "2str" << endl;
+	cout << "inp2:" << input2 << endl;
+	StrBin(input2, support, array2, num, curr, end, f);
+	
+
+	
 
 
-	//for (int i = 0; i < array1.size(); i++) {
-	//		cout << array1[i];
-	//	}
-
-
+	for (int i = 0; i < array2.size(); i++) {
+		cout << array2[i];
+	}
+	cout << endl << "-----" << endl;
+	reverse(std::begin(array2), std::end(array2));
+	for (int i = 0; i < array2.size(); i++) {
+		cout << array2[i];
+	}
 
 
 
