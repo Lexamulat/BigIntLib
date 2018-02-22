@@ -84,11 +84,29 @@ void summ(vector<int>& array1, vector<int>& array2,bool&z1,bool&z2) {
 		cout << array2[i];
 	}
 
+	while ((array2.size())<7) {
+		array2.insert(array2.begin(), 0);
+	
+	}
 
+	while ((array1.size())<7) {
+		array1.insert(array1.begin(), 0);
+
+	}
+
+	cout << endl << "ar1" << endl;
+	for (int i = 0; i < array1.size(); i++) {
+		cout << array1[i];
+	}
+	cout << endl << "ar2" << endl;
+
+	for (int i = 0; i < array2.size(); i++) {
+		cout << array2[i];
+	}
 
 }
 
-
+// fd
 
 
 
