@@ -95,7 +95,58 @@ void Summ(vector<int>& array1, vector<int>& array2, vector<int>& result) {
 
 
 
+void Diff(vector<int>& array1, vector<int>& array2, vector<int>& result) {
+	result.clear();
+	int buff=0;
+	int curr;
+	int raz = (array1.size() - array2.size());
+	if (array1.size() > array2.size()) {
 
+		for (int i = 0; i <raz; i++) {
+			array2.insert(array2.begin(), 0);
+
+		}
+
+	}
+	else if (array1.size() < array2.size()) {
+
+		for (int i = 0; i < (raz*(-1)); i++) {
+			array1.insert(array1.begin(), 0);
+
+		}
+	}
+	int big=0;
+	for (int i = 0; i < array1.size(); i++) {
+		if (array1[i] > array2[i]) {
+			big = 1;
+			break;
+		}
+		else if (array1[i] < array2[i]) {
+			big = 2;
+		}
+	}
+
+	if (big == 1) {
+		for (int i = array1.size() - 1; i > -1; i--) {
+			curr = (array1[i]-buff) - array2[i];
+			if (curr<0) {
+				curr = ((10 + array1[i]) - array2[i]);
+				buff = 1;
+			}
+			else if (curr>=0) {
+				buff = 0;
+				
+			}
+			result.insert(result.begin(), curr);
+		}
+	}
+	cout << endl << "--------------result----------------------------" << endl;
+
+
+	for (int i = 0; i < result.size(); i++) {
+		cout << result[i];
+	}
+}
 
 
 
@@ -129,7 +180,7 @@ int main() {
 	}
 
 
-	Summ(array1,array2,result);
+	Diff(array1,array2,result);
 
 	/*for (int i = 0; i < array1.size(); i++) {
 		cout << array1[i];
