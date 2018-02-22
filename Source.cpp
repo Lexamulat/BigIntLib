@@ -123,6 +123,7 @@ void Diff(vector<int>& array1, vector<int>& array2, vector<int>& result) {
 		}
 		else if (array1[i] < array2[i]) {
 			big = 2;
+			break;
 		}
 	}
 
@@ -139,9 +140,34 @@ void Diff(vector<int>& array1, vector<int>& array2, vector<int>& result) {
 			}
 			result.insert(result.begin(), curr);
 		}
+		cout << endl << "+" << endl;
 	}
-	cout << endl << "--------------result----------------------------" << endl;
 
+	if (big == 2) {
+		for (int i = array1.size() - 1; i > -1; i--) {
+			curr = (array2[i] - buff) - array1[i];
+			if (curr<0) {
+				curr = ((10 + array2[i]) - array1[i]);
+				buff = 1;
+			}
+			else if (curr >= 0) {
+				buff = 0;
+
+			}
+			result.insert(result.begin(), curr);
+		}
+	
+	
+		cout << endl << "-" << endl;
+	
+	}
+
+	if (big == 0) {
+	
+		result.insert(result.begin(), 0);
+	}
+
+	cout << endl << "--------------result----------------------------" << endl;
 
 	for (int i = 0; i < result.size(); i++) {
 		cout << result[i];
