@@ -78,8 +78,8 @@ void Summ(vector<int>& array1, vector<int>& array2, vector<int>& result) {
 	if (buff != 0) {
 		result.insert(result.begin(), buff);
 	}
-
-	/*cout << endl << "--------------result----------------------------" << endl;
+/*
+	cout << endl << "--------------result----------------------------" << endl;
 
 
 	for (int i = 0; i < result.size(); i++) {
@@ -177,22 +177,53 @@ void Diff(vector<int>& array1, vector<int>& array2, vector<int>& result) {
 
 
 void Multiplication(vector<int> big, vector<int> small, vector<int>& result) {
+	vector<int> currentsumm;
 	vector<int> temp;
-	temp=big;
-	for (int i = 0; i < small.size(); i++) {
-		if (i == 0) {
-			result = temp;
-			temp.clear();
+	int nul = 0;
+	for (int i= small.size()-1; i >-1; i--) {
+		if (small[i] == 0) {
+			continue;
 		}
-		else
+		else if (small[i] == 1)
 		{
-			temp.insert(temp.end(), 0);
-			Summ(result, temp, result);
+			temp = big;
 		}
+		else{
+			temp = big;
 
-		for (int j = 0; j < (small[i]-1); j++) {
-			Summ(temp, big, temp);
+			for (int j = 0; j < (small[i] - 1); j++) {
+
+				Summ(temp, big, currentsumm);
+				temp = currentsumm;
+				currentsumm.clear();
+			}
+			
+
+	    }
+		for (int d = small.size() - 1; d >i; d--) {
+			temp.insert(temp.end(), 0);
 		}
+		currentsumm = result;
+		result.clear();
+		Summ(temp, currentsumm, result);
+		temp.clear();
+		currentsumm.clear();
+
+
+
+
+
+
+
+		/*temp.insert(temp.end(), 0);
+		if (nul == 1) {
+			temp.insert(temp.end(), 0);
+		}
+		
+
+		Summ(result, temp, result);
+		temp.clear();*/
+      
 	}
 
 
@@ -227,7 +258,7 @@ void Prepair_for_Mult(vector<int>& array1, vector<int>& array2, vector<int>& res
 	if (big == 1) {
 		for (int i = 0; i < array2.size(); i++) {
 			if (array2[i] == 0) {
-				array2.erase(array2.begin() + 1);
+				array2.erase(array2.begin() + 0);
 			}
 			else  break;
 			}
@@ -246,7 +277,7 @@ void Prepair_for_Mult(vector<int>& array1, vector<int>& array2, vector<int>& res
 
 		Multiplication(array2, array1, result);
 	}
-	Multiplication(array2, array1, result);
+	else Multiplication(array2, array1, result);
 
 }
 	
@@ -289,6 +320,7 @@ int main() {
 	}
 
 
+	/*Summ(array1, array2, result);*/
 	Prepair_for_Mult(array1,array2,result);
 
 	/*for (int i = 0; i < array1.size(); i++) {
