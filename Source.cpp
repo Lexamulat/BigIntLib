@@ -257,24 +257,22 @@ void Prepair_for_Mult(vector<int>& array1, vector<int>& array2, vector<int>& res
 	}
 	///////////////////////////////////////////////////////   find   the biggest num 
 	if (big == 1) {
-		for (int i = 0; i < array2.size(); i++) {
-			if (array2[i] == 0) {
-				array2.erase(array2.begin() + 0);
-			}
-			else  break;
-			}
-		Multiplication(array1, array2, result);
+
+		while (array2[0] == 0) {
+			array2.erase(array2.begin() + 0);
 		}
+
+		Multiplication(array1, array2, result);
+	}
 	else if (big==2) 
 	{
-		for (int i = 0; i < array2.size(); i++)
-		{
-			if (array1[i] == 0) 
+		
+			while (array1[0] == 0) 
 			{
-				array1.erase(array1.begin() + 1);
+				array1.erase(array1.begin() + 0);
 			}
-			else  break;
-		}
+			
+		
 
 		Multiplication(array2, array1, result);
 	}
@@ -369,7 +367,16 @@ int main() {
 
 	/*Summ(array1, array2, result);*/
 	/*Prepair_for_Mult(array1,array2,result);*/
+
 	Division(array1, array2, result);
+
+
+	cout << endl << "-------------------rez------" << endl;
+	for (int i = 0; i < result.size(); i++) {
+		cout << result[i];
+	}
+
+
 
 	/*for (int i = 0; i < array1.size(); i++) {
 		cout << array1[i];
