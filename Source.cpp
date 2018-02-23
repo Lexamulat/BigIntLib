@@ -57,6 +57,7 @@ void NormalLenght(vector<int>& array1, vector<int>& array2) {
 
 
 void Summ(vector<int>& array1, vector<int>& array2, vector<int>& result) {
+	
 	NormalLenght(array1, array2);
 
 	int curr;
@@ -167,11 +168,11 @@ void Diff(vector<int>& array1, vector<int>& array2, vector<int>& result) {
 		result.insert(result.begin(), 0);
 	}
 
-	cout << endl << "--------------result----------------------------" << endl;
+	/*cout << endl << "--------------result----------------------------" << endl;
 
 	for (int i = 0; i < result.size(); i++) {
 		cout << result[i];
-	}
+	}*/
 }
 
 
@@ -228,12 +229,12 @@ void Multiplication(vector<int> big, vector<int> small, vector<int>& result) {
 
 
 
-	cout << endl << "--------------result----------------------------" << endl;
+	/*cout << endl << "--------------result----------------------------" << endl;
 
 
 	for (int i = 0; i < result.size(); i++) {
 	cout << result[i];
-	}
+	}*/
 
 
 }
@@ -284,7 +285,53 @@ void Prepair_for_Mult(vector<int>& array1, vector<int>& array2, vector<int>& res
 
 
 	
+void Division(vector<int>& array1, vector<int>& array2, vector<int>& result) {
+	//условно считаем что первое число больше второго
+	vector<int> one;
+	int big = 0;
 
+	one.insert(one.end(), 1);
+	vector<int> answer;
+	answer.insert(answer.end(), 1);
+
+	while (big != 2) {
+
+		Prepair_for_Mult(array2, answer, result);
+		NormalLenght(array1, result);
+		for (int i = 0; i < array1.size(); i++) {
+			if (array1[i] > result[i]) {
+				big = 1;
+				break;
+			}
+			else if (array1[i] < result[i]) {
+				big = 2;
+				break;
+			}
+		}
+		if (big == 2) break;
+		result.clear();
+		Summ(answer, one, result);
+		answer = result;
+
+		result.clear();
+
+
+	}
+
+	Diff(answer, one, result);
+	cout << endl << "--------------result----------------------------" << endl;
+
+
+	for (int i = 0; i < result.size(); i++) {
+		cout << result[i];
+	}
+
+
+	/*Summ(answer, one, result);
+		answer = result;*/
+
+
+}
 
 
 
@@ -321,7 +368,8 @@ int main() {
 
 
 	/*Summ(array1, array2, result);*/
-	Prepair_for_Mult(array1,array2,result);
+	/*Prepair_for_Mult(array1,array2,result);*/
+	Division(array1, array2, result);
 
 	/*for (int i = 0; i < array1.size(); i++) {
 		cout << array1[i];
