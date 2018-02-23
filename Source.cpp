@@ -317,12 +317,12 @@ void Division(vector<int>& array1, vector<int>& array2, vector<int>& result) {
 	}
 
 	Diff(answer, one, result);
-	cout << endl << "--------------result----------------------------" << endl;
+	/*cout << endl << "--------------result----------------------------" << endl;
 
 
 	for (int i = 0; i < result.size(); i++) {
 		cout << result[i];
-	}
+	}*/
 
 
 	/*Summ(answer, one, result);
@@ -332,7 +332,47 @@ void Division(vector<int>& array1, vector<int>& array2, vector<int>& result) {
 }
 
 
+void Mod(vector<int>& array1, vector<int>& array2, vector<int>& result) {
 
+	vector<int> one;
+	int big = 0;
+
+	one.insert(one.end(), 1);
+	vector<int> answer;
+	answer.insert(answer.end(), 1);
+
+	while (big != 2) {
+
+		Prepair_for_Mult(array2, answer, result);
+		NormalLenght(array1, result);
+		for (int i = 0; i < array1.size(); i++) {
+			if (array1[i] > result[i]) {
+				big = 1;
+				break;
+			}
+			else if (array1[i] < result[i]) {
+				big = 2;
+				break;
+			}
+		}
+		if (big == 2) break;
+		result.clear();
+		Summ(answer, one, result);
+		answer = result;
+
+		result.clear();
+
+
+	}
+
+	Diff(answer, one, result);
+	answer = result;
+	Prepair_for_Mult(array2, answer, result);
+	answer = result;
+	Diff(array1,answer,result);
+
+
+}
 
 
 
@@ -368,7 +408,7 @@ int main() {
 	/*Summ(array1, array2, result);*/
 	/*Prepair_for_Mult(array1,array2,result);*/
 
-	Division(array1, array2, result);
+	Mod(array1, array2, result);
 
 
 	cout << endl << "-------------------rez------" << endl;
