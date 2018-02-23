@@ -426,7 +426,7 @@ int main() {
 	for (int i = 0; i < array1.size(); i++) {
 		cout << array1[i];
 	}
-	//
+	//]]
 
 	curr = 0;
 	f = 0;
