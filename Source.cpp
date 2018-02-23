@@ -31,27 +31,36 @@ bool StrToVect(string &input, vector<int>& array) {
 }
 
 
-void Summ(vector<int>& array1, vector<int>& array2, vector<int>& result) {
-	int curr;
-	int buff=0;
 
+void NormalLenght(vector<int>& array1, vector<int>& array2) {
+
+	////////////////////////////////////////////////////////////////////
 	int raz = (array1.size() - array2.size());
 	if (array1.size() > array2.size()) {
-	
-		for (int i = 0; i <raz;i++){
+
+		for (int i = 0; i <raz; i++) {
 			array2.insert(array2.begin(), 0);
-		
+
 		}
-	
+
 	}
 	else if (array1.size() < array2.size()) {
-	
+
 		for (int i = 0; i < (raz*(-1)); i++) {
 			array1.insert(array1.begin(), 0);
 
 		}
 	}
+	////////////////////////////////////////////////////////////////////
 
+}
+
+
+void Summ(vector<int>& array1, vector<int>& array2, vector<int>& result) {
+	NormalLenght(array1, array2);
+
+	int curr;
+	int buff=0;
 	for (int i = array1.size()-1; i > -1;i--) {
 		curr = (array1[i] + array2[i])+buff;
 		if (curr < 10) {
@@ -70,26 +79,14 @@ void Summ(vector<int>& array1, vector<int>& array2, vector<int>& result) {
 		result.insert(result.begin(), buff);
 	}
 
-	cout << endl << "--------------result----------------------------" << endl;
+	/*cout << endl << "--------------result----------------------------" << endl;
 
 
 	for (int i = 0; i < result.size(); i++) {
 		cout << result[i];
-	}
+	}*/
 
 
-/*
-	cout <<endl<< "------------------------------------------" << endl;
-
-
-	for (int i = 0; i < array1.size(); i++) {
-		cout << array1[i];
-	}
-	cout <<endl<< "------------------------------------------" << endl;
-	for (int i = 0; i < array2.size(); i++) {
-		cout << array2[i];
-	}
-	cout <<endl<< "------------------------------------------" << endl;*/
 }
 
 
@@ -99,6 +96,7 @@ void Diff(vector<int>& array1, vector<int>& array2, vector<int>& result) {
 	result.clear();
 	int buff=0;
 	int curr;
+	//////////////////////////////////////////////////////
 	int raz = (array1.size() - array2.size());
 	if (array1.size() > array2.size()) {
 
@@ -115,6 +113,7 @@ void Diff(vector<int>& array1, vector<int>& array2, vector<int>& result) {
 
 		}
 	}
+	////////////////////////////////////////////////////////      normal sizes
 	int big=0;
 	for (int i = 0; i < array1.size(); i++) {
 		if (array1[i] > array2[i]) {
@@ -126,6 +125,7 @@ void Diff(vector<int>& array1, vector<int>& array2, vector<int>& result) {
 			break;
 		}
 	}
+	///////////////////////////////////////////////////////   find   the biggest num 
 
 	if (big == 1) {
 		for (int i = array1.size() - 1; i > -1; i--) {
@@ -176,6 +176,89 @@ void Diff(vector<int>& array1, vector<int>& array2, vector<int>& result) {
 
 
 
+void Multiplication(vector<int> big, vector<int> small, vector<int>& result) {
+	vector<int> temp;
+	temp=big;
+	for (int i = 0; i < small.size(); i++) {
+		if (i == 0) {
+			result = temp;
+			temp.clear();
+		}
+		else
+		{
+			temp.insert(temp.end(), 0);
+			Summ(result, temp, result);
+		}
+
+		for (int j = 0; j < (small[i]-1); j++) {
+			Summ(temp, big, temp);
+		}
+	}
+
+
+
+	cout << endl << "--------------result----------------------------" << endl;
+
+
+	for (int i = 0; i < result.size(); i++) {
+	cout << result[i];
+	}
+
+
+}
+
+
+
+void Prepair_for_Mult(vector<int>& array1, vector<int>& array2, vector<int>& result) {
+	result.clear();
+	NormalLenght(array1, array2);
+	int big = 0;
+	for (int i = 0; i < array1.size(); i++) {
+		if (array1[i] > array2[i]) {
+			big = 1;
+			break;
+		}
+		else if (array1[i] < array2[i]) {
+			big = 2;
+			break;
+		}
+	}
+	///////////////////////////////////////////////////////   find   the biggest num 
+	if (big == 1) {
+		for (int i = 0; i < array2.size(); i++) {
+			if (array2[i] == 0) {
+				array2.erase(array2.begin() + 1);
+			}
+			else  break;
+			}
+		Multiplication(array1, array2, result);
+		}
+	else if (big==2) 
+	{
+		for (int i = 0; i < array2.size(); i++)
+		{
+			if (array1[i] == 0) 
+			{
+				array1.erase(array1.begin() + 1);
+			}
+			else  break;
+		}
+
+		Multiplication(array2, array1, result);
+	}
+	Multiplication(array2, array1, result);
+
+}
+	
+
+
+	
+
+
+
+
+
+
 
 int main() {
 
@@ -206,7 +289,7 @@ int main() {
 	}
 
 
-	Diff(array1,array2,result);
+	Prepair_for_Mult(array1,array2,result);
 
 	/*for (int i = 0; i < array1.size(); i++) {
 		cout << array1[i];
