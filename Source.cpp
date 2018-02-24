@@ -4,14 +4,17 @@
 #include<cstdint>
 #include <algorithm>
 #include<cmath>
-
+#include "Big.h"
 using namespace std;
 
 
 int main() {
 
-
-
+	big *num1 = new big;
+	string input;
+	cout << "enter 1" << endl;
+	cin >> input;
+	num1->set_num(input);
 
 
 
