@@ -1,8 +1,9 @@
 #include "Big.h"
 #include <string>
-
+#include<iostream>
 
 using namespace std;
+
 
 void big::set_num(std::string &input)
 {
@@ -28,6 +29,8 @@ void big::set_num(std::string &input)
 
 void big::get_num() {
 
-
+	for (int i = 0; i < array.size(); i++) {
+				cout << array[i];
+			}
 
 }

@@ -15,6 +15,7 @@ int main() {
 	cout << "enter 1" << endl;
 	cin >> input;
 	num1->set_num(input);
+	num1->get_num();
 
 
 
