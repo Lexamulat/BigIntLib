@@ -12,6 +12,12 @@ big::big(string &input) {
 	set_num(input);
 }
 
+big::big(vector<int> &array1) {
+	for (int i = 0; i < array1.size(); i++) {
+		(*array).insert((*array).end(), array1[i]);
+
+	}
+}
 void big::set_num(std::string &input)
 {
 
@@ -67,14 +73,40 @@ void big::NormalLenght(vector<int> &array1, vector<int> &array2) {
 		}
 }
 
-
-
-void big::summ(big &num1,big &num2) {
+vector<int> big::VecSumm(std::vector<int> &array1, std::vector<int> &array2) {
 	vector<int> result;
 
-	NormalLenght(*num1.array, *num2.array);
+	NormalLenght(array1,array2);
+	
+		int curr;
+		int buff=0;
+		for (int i = array1.size()-1; i > -1;i--) {
+			curr = (array1[i] + array2[i])+buff;
+			if (curr < 10) {
+				result.insert(result.begin(), curr);
+				buff = 0;
+	
+			}
+			else {
+				result.insert(result.begin(), (curr%10));
+				buff = curr/10;
+			}
+		
+		}
+	
+		if (buff != 0) {
+			result.insert(result.begin(), buff);
+		}
 
-	int curr;
+		return result;
+}
+
+big big::summ(big &num1,big &num2) {
+	vector<int> result = VecSumm((*num1.array), (*num2.array));
+	big out(result);
+
+
+	/*int curr;
 	int buff = 0;
 	for (int i = (*num1.array).size() - 1; i > -1; i--) {
 		curr = ((*num1.array)[i] + (*num2.array)[i]) + buff;
@@ -92,15 +124,21 @@ void big::summ(big &num1,big &num2) {
 
 	if (buff != 0) {
 		result.insert(result.begin(), buff);
-	}
-	cout << endl;
+	}*/
+
+
+
+
+	/*cout << endl;
 	cout << endl << "--------------result----------------------------" << endl;
 	
 	
 		for (int i = 0; i < result.size(); i++) {
 			cout << result[i];
-		}
+		}*/
 
+
+		return out;
 
 }
   

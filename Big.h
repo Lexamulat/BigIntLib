@@ -8,15 +8,17 @@
 class big {
 
 public:
+	big(std::vector<int> &array1);
 	big(std::string &input);
 void NormalLenght(std::vector<int> &array1, std::vector<int> &array2);
 void set_num(std::string &input);
 void get_num();
-void summ(big &num1, big &num2);
+big summ(big &num1, big &num2);
 
 
 private:
 
+	std::vector<int> VecSumm(std::vector<int> &array1, std::vector<int> &array2);
 	//std::vector<int> mvector;
 	///* Copy the vector in a shared pointer */
 	//std::shared_ptr<std::vector<int>> array = std::make_shared<std::vector<int>>(mvector);

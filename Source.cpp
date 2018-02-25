@@ -24,9 +24,11 @@ void check() {
 
 	//big out;
 	string input;
+	
 	cout << "enter 1" << endl;
 	cin >> input;
 	big num1(input);
+	
 
 	//num1.set_num(input);
 	cout << endl << "-----------num1--------" << endl;
@@ -42,7 +44,9 @@ void check() {
 	cout << endl << "-----------num2--------" << endl;
 	num2.get_num();
 	cout << endl;
-	num1.summ(num1,num2);
+	//num1.summ(num1, num2);
+	big out= num1.summ(num1, num2);
+	out.get_num();
 
 
 }
