@@ -8,10 +8,11 @@
 class big {
 
 public:
+	big(std::string &input);
 void NormalLenght(std::vector<int> &array1, std::vector<int> &array2);
 void set_num(std::string &input);
 void get_num();
-big big::summ(big num1, big num2, big &out);
+void summ(big &num1, big &num2);
 
 
 private:

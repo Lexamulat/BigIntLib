@@ -7,6 +7,11 @@
 using namespace std;
 
 
+big::big(string &input) {
+
+	set_num(input);
+}
+
 void big::set_num(std::string &input)
 {
 	
@@ -63,9 +68,9 @@ void big::NormalLenght(vector<int> &array1, vector<int> &array2) {
 
 
 
-big big::summ(big num1, big num2,big &out) {
+void big::summ(big &num1, big &num2) {
 	vector<int> result;
-
+	
 
 	NormalLenght(num1.array, num2.array);
 
@@ -88,7 +93,13 @@ big big::summ(big num1, big num2,big &out) {
 	if (buff != 0) {
 		result.insert(result.begin(), buff);
 	}
-	out.array = result;
 
-	return out;
+	cout << endl << "--------------result----------------------------" << endl;
+	
+	
+		for (int i = 0; i < result.size(); i++) {
+			cout << result[i];
+		}
+
+
 }
