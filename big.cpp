@@ -1,6 +1,8 @@
 #include "Big.h"
 #include <string>
 #include<iostream>
+#include <vector>
+#include <memory>
 
 using namespace std;
 
@@ -27,10 +29,66 @@ void big::set_num(std::string &input)
 	
 }
 
+
+
 void big::get_num() {
 
 	for (int i = 0; i < array.size(); i++) {
 				cout << array[i];
 			}
 
+}
+
+
+
+void big::NormalLenght(vector<int> &array1, vector<int> &array2) {
+
+	int raz = (array1.size() - array2.size());
+		if (array1.size() > array2.size()) {
+	
+			for (int i = 0; i <raz; i++) {
+				array2.insert(array2.begin(), 0);
+	
+			}
+	
+		}
+		else if (array1.size() < array2.size()) {
+	
+			for (int i = 0; i < (raz*(-1)); i++) {
+				array1.insert(array1.begin(), 0);
+	
+			}
+		}
+}
+
+
+
+big big::summ(big num1, big num2,big &out) {
+	vector<int> result;
+
+
+	NormalLenght(num1.array, num2.array);
+
+	int curr;
+	int buff = 0;
+	for (int i = (num1.array).size() - 1; i > -1; i--) {
+		curr = ((num1.array)[i] + (num2.array)[i]) + buff;
+		if (curr < 10) {
+			result.insert(result.begin(), curr);
+			buff = 0;
+
+		}
+		else {
+			result.insert(result.begin(), (curr % 10));
+			buff = curr / 10;
+		}
+
+	}
+
+	if (buff != 0) {
+		result.insert(result.begin(), buff);
+	}
+	out.array = result;
+
+	return out;
 }
