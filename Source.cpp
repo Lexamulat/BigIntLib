@@ -9,22 +9,26 @@ using namespace std;
 
 
 int main() {
+	//unique_ptr<big> num1;
 
-	big *num1 = new big;
-	big *num2 = new big;
-	big *out = new big;
+	big num1;
+	big num2;
+	big out;
 	string input;
 	cout << "enter 1" << endl;
 	cin >> input;
-	num1->set_num(input);
-	num1->get_num();
+	num1.set_num(input);
+	cout << endl << "-----------num1--------" << endl;
+	num1.get_num();
 	input.clear();
-	cout << "enter 2" << endl;
+	cout <<endl<< "enter 2" << endl;
 	cin >> input;
-	num2->set_num(input);
-	num2->get_num();
-	out->summ(*num1,*num2,*out);
-	out->get_num();
+	num2.set_num(input);
+	cout << endl << "-----------num2--------" << endl;
+	num2.get_num();
+	out.summ(num1,num2,out);
+	cout << endl << "-----------out--------" << endl;
+	out.get_num();
 
 
 	system("pause");

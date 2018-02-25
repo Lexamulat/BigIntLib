@@ -18,6 +18,6 @@ private:
 
 	std::vector<int> array;
 	
-
+	//std::unique_ptr<vector<int>> array;
 };
 
