@@ -14,7 +14,7 @@ big::big(string &input) {
 
 void big::set_num(std::string &input)
 {
-	
+
 	bool znk = 0;
 	if (input[0] == '-') {
 		znk = 1;
@@ -28,9 +28,10 @@ void big::set_num(std::string &input)
 	}
 
 	for (int i = 0; i < input.length(); i++) {
-		(array).insert((array).end(), input[i] - 48);
+		(*array).insert((*array).end(), input[i] - 48);
 
 	}
+	
 	
 }
 
@@ -38,8 +39,8 @@ void big::set_num(std::string &input)
 
 void big::get_num() {
 
-	for (int i = 0; i < array.size(); i++) {
-				cout << array[i];
+	for (int i = 0; i < (*array).size(); i++) {
+				cout << (*array)[i];
 			}
 
 }
@@ -68,16 +69,15 @@ void big::NormalLenght(vector<int> &array1, vector<int> &array2) {
 
 
 
-void big::summ(big &num1, big &num2) {
+void big::summ(big &num1,big &num2) {
 	vector<int> result;
-	
 
-	NormalLenght(num1.array, num2.array);
+	NormalLenght(*num1.array, *num2.array);
 
 	int curr;
 	int buff = 0;
-	for (int i = (num1.array).size() - 1; i > -1; i--) {
-		curr = ((num1.array)[i] + (num2.array)[i]) + buff;
+	for (int i = (*num1.array).size() - 1; i > -1; i--) {
+		curr = ((*num1.array)[i] + (*num2.array)[i]) + buff;
 		if (curr < 10) {
 			result.insert(result.begin(), curr);
 			buff = 0;
@@ -93,7 +93,7 @@ void big::summ(big &num1, big &num2) {
 	if (buff != 0) {
 		result.insert(result.begin(), buff);
 	}
-
+	cout << endl;
 	cout << endl << "--------------result----------------------------" << endl;
 	
 	
@@ -103,3 +103,4 @@ void big::summ(big &num1, big &num2) {
 
 
 }
+  

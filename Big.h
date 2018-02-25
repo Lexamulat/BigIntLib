@@ -17,8 +17,26 @@ void summ(big &num1, big &num2);
 
 private:
 
-	std::vector<int> array;
+	//std::vector<int> mvector;
+	///* Copy the vector in a shared pointer */
+	//std::shared_ptr<std::vector<int>> array = std::make_shared<std::vector<int>>(mvector);
+
+	//https://stackoverflow.com/questions/26734452/how-can-i-create-a-shared-ptr-to-a-stdvector
+
+
+	std::vector<int> mVector;
+	std::shared_ptr<std::vector<int>> array = std::make_shared<std::vector<int> >(std::move(mVector));
+
 	
+
+	//std::unique_ptr<std::vector<int>> p1=new (vector<int>);
+	/*std::vector<uint8_t> mVector;
+	auto mSharedPtr = std::make_shared<std::vector<uint8_t> >(std::move(mVector));*/
+	// mSharedPtr = std::make_shared<std::vector<int> >();
+	//std::vector<int> *array;
+//	unique_ptr<int> znak;
+//	shared_ptr<std::vector<int>> array;
+	//std::unique_ptr<vector<int>> array;
 	//std::unique_ptr<vector<int>> array;
 };
 

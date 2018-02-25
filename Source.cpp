@@ -5,10 +5,21 @@
 #include <algorithm>
 #include<cmath>
 #include "Big.h"
+
+
+// Для обнаружения утечек памяти
+#define _CRTDBG_MAP_ALLOC
+#include <crtdbg.h>
+#ifdef _DEBUG
+#ifndef DBG_NEW
+#define DBG_NEW new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
+#define newDBG_NEW
+#endif
+#endif
+
 using namespace std;
 
-
-int main() {
+void check() {
 	//unique_ptr<big> num1;
 
 	//big out;
@@ -20,6 +31,8 @@ int main() {
 	//num1.set_num(input);
 	cout << endl << "-----------num1--------" << endl;
 	num1.get_num();
+
+
 	input.clear();
 	cout <<endl<< "enter 2" << endl;
 	cin >> input;
@@ -28,8 +41,25 @@ int main() {
 	//num2.set_num(input);
 	cout << endl << "-----------num2--------" << endl;
 	num2.get_num();
+	cout << endl;
 	num1.summ(num1,num2);
-	
+
+
+}
+
+
+int main() {
+
+	check();
+	// Для обнаружения утечек памяти
+
+	_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_FILE);
+	_CrtSetReportFile(_CRT_WARN, _CRTDBG_FILE_STDOUT);
+	_CrtSetReportMode(_CRT_ERROR, _CRTDBG_MODE_FILE);
+	_CrtSetReportFile(_CRT_ERROR, _CRTDBG_FILE_STDOUT);
+	_CrtSetReportMode(_CRT_ASSERT, _CRTDBG_MODE_FILE);
+	_CrtSetReportFile(_CRT_ASSERT, _CRTDBG_FILE_STDOUT);
+	_CrtDumpMemoryLeaks();
 
 
 	system("pause");
