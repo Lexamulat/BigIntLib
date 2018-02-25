@@ -14,10 +14,11 @@ void NormalLenght(std::vector<int> &array1, std::vector<int> &array2);
 void set_num(std::string &input);
 void get_num();
 big summ(big &num1, big &num2);
+big diff(big &num1, big &num2);
 
 
 private:
-
+	void FindBiggest(std::vector<int> &array1, std::vector<int> &array2, int &big);
 	std::vector<int> VecSumm(std::vector<int> &array1, std::vector<int> &array2);
 	//std::vector<int> mvector;
 	///* Copy the vector in a shared pointer */
