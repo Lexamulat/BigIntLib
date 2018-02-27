@@ -19,6 +19,7 @@ big::big(vector<int> &array1,bool &znk) {
 	}
 	znak = std::make_shared<bool>(znk);
 }
+
 void big::set_num(std::string &input)
 {
 
@@ -125,93 +126,127 @@ vector<int> big::VecSumm(std::vector<int> &array1, std::vector<int> &array2) {
 }
 
 big big::summ(big &num1,big &num2) {
-	
-	//if both numbers are positive
-	if ((*num1.znak == 0) && (*num2.znak == 0)) {
+	bool PlaceOfCall = 0;
+	//if both numbers are positive or negative
+	if ((*num1.znak == 0) && (*num2.znak == 0) || (*num1.znak == 1) && (*num2.znak == 1)) {
 
 		vector<int> result = VecSumm((*num1.array), (*num2.array));
 		big out(result, *num2.znak);
 		return out;
 	}
-	//
-	else if ((*num1.znak == 1) && (*num2.znak == 0)|| (*num1.znak == 0) && (*num2.znak == 1)) {
-	}
+	//if the signs are different
+	
+	else  {
 
-	//if both numbers are negative
-	//
-	else {
-		vector<int> result = VecSumm((*num1.array), (*num2.array));
-		big out(result,*num2.znak);
+
+		big out = num1.diff(num1, num2,PlaceOfCall);
+		//int biggest = 0;
+		//NormalLenght((*num1.array), (*num2.array));
+		//FindBiggest((*num1.array), (*num2.array), biggest);
+
+		////if the NUM(1) number is more modulo, subtract the second from it and assign the NUM(1) num
+		//if (biggest == 1) {
+
+
+		//}
+
+
+
+
+		
 		return out;
 
 	}
+
+	
 }
 
-big big::diff(big &num1, big &num2) {
+big big::diff(big &num1, big &num2, bool &PlaseOfCall) {
 	int biggest = 0;
 	int buff = 0;
 	int curr;
 	vector<int> result;
-	NormalLenght((*num1.array), (*num2.array));
-	FindBiggest((*num1.array), (*num2.array),biggest);
+	if ((PlaseOfCall == 1) && (*num2.znak == 1)) {
+		*num2.znak = 0;
+		big out = num1.summ(num1, num2);
+		return out;
+	}
+	else {
+		NormalLenght((*num1.array), (*num2.array));
+		FindBiggest((*num1.array), (*num2.array), biggest);
 
-	if (biggest == 1) {
-				for (int i = (*num1.array).size() - 1; i > -1; i--) {
-					curr = ((*num1.array)[i]-buff) - (*num2.array)[i];
-					if (curr<0) {
-						curr = ((10 + (*num1.array)[i]-buff) - (*num2.array)[i]);
-						buff = 1;
-					}
-				
+		if (biggest == 1) {
+			for (int i = (*num1.array).size() - 1; i > -1; i--) {
+				curr = ((*num1.array)[i] - buff) - (*num2.array)[i];
+				if (curr < 0) {
+					curr = ((10 + (*num1.array)[i] - buff) - (*num2.array)[i]);
+					buff = 1;
+				}
 
-					else if (curr>=0) {
-						buff = 0;
-						
-					}
-					result.insert(result.begin(), curr);
+
+				else if (curr >= 0) {
+					buff = 0;
+
 				}
-				cout << endl << "+" << endl;
+				result.insert(result.begin(), curr);
 			}
-		
-			if (biggest == 2) {
-				for (int i = (*num1.array).size() - 1; i > -1; i--) {
-					curr = ((*num2.array)[i] - buff) - (*num1.array)[i];
-					if (curr<0) {
-						curr = ((10 + (*num2.array)[i]) - (*num1.array)[i]);
-						buff = 1;
-					}
-					else if (curr >= 0) {
-						buff = 0;
-		
-					}
-					result.insert(result.begin(), curr);
-				}
-			
-			
-				cout << endl << "-" << endl;
-			
-			}
-		
-			if (biggest == 0) {
-			
-				result.insert(result.begin(), 0);
-			}
+			cout << endl << "+" << endl;
+
+
 			while (result[0] == 0) {
 				result.erase(result.begin() + 0);
 			}
-		
-			/*cout << endl << "--------------result----------------------------" << endl;
-		
-			for (int i = 0; i < result.size(); i++) {
-				cout << result[i];
-			}*/
+			big out(result, *num1.znak);
+			return out;
+
+		}
+
+		if (biggest == 2) {
+			for (int i = (*num1.array).size() - 1; i > -1; i--) {
+				curr = ((*num2.array)[i] - buff) - (*num1.array)[i];
+				if (curr < 0) {
+					curr = ((10 + (*num2.array)[i]) - (*num1.array)[i]);
+					buff = 1;
+				}
+				else if (curr >= 0) {
+					buff = 0;
+
+				}
+				result.insert(result.begin(), curr);
+			}
 
 
+			cout << endl << "-" << endl;
 
-			////hot fix znak
 
+			while (result[0] == 0) {
+				result.erase(result.begin() + 0);
+			}
 			big out(result, *num2.znak);
 			return out;
+
+		}
+
+		if (biggest == 0) {
+
+			result.insert(result.begin(), 0);
+			big out(result, *num2.znak);
+		}
+		while (result[0] == 0) {
+			result.erase(result.begin() + 0);
+		}
+
+		/*cout << endl << "--------------result----------------------------" << endl;
+
+		for (int i = 0; i < result.size(); i++) {
+			cout << result[i];
+		}*/
+
+
+
+		////hot fix znak
+		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	}
 }
   
 

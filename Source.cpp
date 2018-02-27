@@ -21,7 +21,7 @@ using namespace std;
 
 void check() {
 	//unique_ptr<big> num1;
-
+	bool PlaseOfCall = 1;
 	//big out;
 	string input;
 	
@@ -45,16 +45,16 @@ void check() {
 	num2.get_num();
 	cout << endl;
 	////////////////---------------------------summ
-	num1.summ(num1, num2);
+	/*num1.summ(num1, num2);
 	big out= num1.summ(num1, num2);
-	out.get_num();
+	out.get_num();*/
 
 
 
 
 	//разность
-	/*big out = num1.diff(num1, num2);
-	out.get_num();*/
+	big out = num1.diff(num1, num2, PlaseOfCall);
+	out.get_num();
 
 
 }
