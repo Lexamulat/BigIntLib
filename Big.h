@@ -8,7 +8,7 @@
 class big {
 
 public:
-	big(std::vector<int> &array1);
+	big(std::vector<int> &array1, bool&znk);
 	big(std::string &input);
 void NormalLenght(std::vector<int> &array1, std::vector<int> &array2);
 void set_num(std::string &input);
@@ -29,7 +29,7 @@ private:
 
 	std::vector<int> mVector;
 	std::shared_ptr<std::vector<int>> array = std::make_shared<std::vector<int> >(std::move(mVector));
-
+	std::shared_ptr<bool> znak;
 	
 
 	//std::unique_ptr<std::vector<int>> p1=new (vector<int>);

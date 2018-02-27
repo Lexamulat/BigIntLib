@@ -12,11 +12,12 @@ big::big(string &input) {
 	set_num(input);
 }
 
-big::big(vector<int> &array1) {
+big::big(vector<int> &array1,bool &znk) {
 	for (int i = 0; i < array1.size(); i++) {
 		(*array).insert((*array).end(), array1[i]);
 
 	}
+	znak = std::make_shared<bool>(znk);
 }
 void big::set_num(std::string &input)
 {
@@ -37,6 +38,7 @@ void big::set_num(std::string &input)
 		(*array).insert((*array).end(), input[i] - 48);
 
 	}
+	znak = std::make_shared<bool>(znk);
 	
 	
 }
@@ -45,9 +47,13 @@ void big::set_num(std::string &input)
 
 void big::get_num() {
 
+	if (*znak == 0) cout << "+";
+	else cout << "-";
+
 	for (int i = 0; i < (*array).size(); i++) {
 				cout << (*array)[i];
 			}
+
 
 }
 
@@ -90,6 +96,8 @@ void big::FindBiggest(std::vector<int> &array1, std::vector<int> &array2,int &bi
 
 vector<int> big::VecSumm(std::vector<int> &array1, std::vector<int> &array2) {
 	vector<int> result;
+	
+
 
 	NormalLenght(array1,array2);
 	
@@ -117,10 +125,26 @@ vector<int> big::VecSumm(std::vector<int> &array1, std::vector<int> &array2) {
 }
 
 big big::summ(big &num1,big &num2) {
-	vector<int> result = VecSumm((*num1.array), (*num2.array));
-	big out(result);
+	
+	//if both numbers are positive
+	if ((*num1.znak == 0) && (*num2.znak == 0)) {
+
+		vector<int> result = VecSumm((*num1.array), (*num2.array));
+		big out(result, *num2.znak);
+		return out;
+	}
+	//
+	else if ((*num1.znak == 1) && (*num2.znak == 0)|| (*num1.znak == 0) && (*num2.znak == 1)) {
+	}
+
+	//if both numbers are negative
+	//
+	else {
+		vector<int> result = VecSumm((*num1.array), (*num2.array));
+		big out(result,*num2.znak);
 		return out;
 
+	}
 }
 
 big big::diff(big &num1, big &num2) {
@@ -182,7 +206,11 @@ big big::diff(big &num1, big &num2) {
 				cout << result[i];
 			}*/
 
-			big out(result);
+
+
+			////hot fix znak
+
+			big out(result, *num2.znak);
 			return out;
 }
   
