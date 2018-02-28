@@ -56,8 +56,16 @@ void check() {
 	/*big out = num1.diff(num1, num2, PlaseOfCall);
 	out.get_num();*/
 
-	big out = num1.Prepair_for_Mult(num1, num2);
+	//умножение
+	/*big out = num1.Prepair_for_Mult(num1, num2);
 	out.get_num();
+*/
+
+	//деление
+	big out = num1.Division(num1, num2);
+	out.get_num();
+
+
 
 
 }

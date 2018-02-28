@@ -279,7 +279,7 @@ big big::Prepair_for_Mult(big &num1, big &num2) {
 					Multiplication((*num2.array), (*num1.array), result);
 
 	}
-	//TODO think about return znak
+	//TODO think about return znak           CLOSED
 	bool znk;
 	if (((*num1.znak)==0)&&(*num2.znak)==0) {
 		znk = 0;
@@ -328,119 +328,109 @@ void big::Multiplication(std::vector<int> big, std::vector<int> small, std::vect
 		temp.clear();
 		currentsumm.clear();
 
-
-
-
 	}
 }
 
 
-//void Prepair_for_Mult(vector<int>& array1, vector<int>& array2, vector<int>& result) {
-//	result.clear();
-//	NormalLenght(array1, array2);
-//	int big = 0;
-//	for (int i = 0; i < array1.size(); i++) {
-//		if (array1[i] > array2[i]) {
-//			big = 1;
-//			break;
-//		}
-//		else if (array1[i] < array2[i]) {
-//			big = 2;
-//			break;
-//		}
-//	}
-//	///////////////////////////////////////////////////////   find   the biggest num 
-//	if (big == 1) {
-//
-//		while (array2[0] == 0) {
-//			array2.erase(array2.begin() + 0);
-//		}
-//
-//		Multiplication(array1, array2, result);
-//	}
-//	else if (big==2) 
-//	{
-//		
-//			while (array1[0] == 0) 
-//			{
-//				array1.erase(array1.begin() + 0);
-//			}
-//			
-//		
-//
-//		Multiplication(array2, array1, result);
-//	}
-//	else Multiplication(array2, array1, result);
-//
-//}
+big big::Division(big &num1, big &num2) {
+	//условно считаем что первое число больше второго
+	bool PlaceOfCall = 0;
+	vector<int> one;
+		int biggest = 0;
+		bool znk = 0;
+		one.insert(one.end(), 1);
+		vector<int> answer;
+		big ones(one, znk);
+		answer.insert(answer.end(), 1);
+		big ans(answer, znk);
+		big result(answer, znk);
+	
+		while (biggest != 2) {
+			result =Prepair_for_Mult(num2, ans);
+			NormalLenght(*num1.array, *result.array);
+			for (int i = 0; i < (*num1.array).size(); i++) {
+				if ((*num1.array)[i] > (*result.array)[i]) {
+					biggest = 1;
+					break;
+				}
+				else if ((*num1.array)[i] < (*result.array)[i]) {
+					biggest = 2;
+					break;
+				}
+			}
+			if (biggest == 2) break;
+			(*result.array).clear();
+			(*result.array)=VecSumm((*ans.array), one);
+			(*ans.array) = (*result.array);
+	
+			(*result.array).clear();
+	
+	
+		}
+	
+		result =diff(ans, ones, PlaceOfCall);
+		/*cout << endl << "--------------result----------------------------" << endl;
+	
+	
+		for (int i = 0; i < result.size(); i++) {
+			cout << result[i];
+		}*/
+	
+	
+		/*Summ(answer, one, result);
+			answer = result;*/
+	
+	
+	
+		return result;
 
 
+}
 
-
-
-//void Multiplication(vector<int> big, vector<int> small, vector<int>& result) {
-	//	vector<int> currentsumm;
-	//	vector<int> temp;
-	//	int nul = 0;
-	//	for (int i= small.size()-1; i >-1; i--) {
-	//		if (small[i] == 0) {
-	//			continue;
-	//		}
-	//		else if (small[i] == 1)
-	//		{
-	//			temp = big;
-	//		}
-	//		else{
-	//			temp = big;
+//void Division(vector<int>& array1, vector<int>& array2, vector<int>& result) {
+	//	//условно считаем что первое число больше второго
+	//	vector<int> one;
+	//	int big = 0;
 	//
-	//			for (int j = 0; j < (small[i] - 1); j++) {
+	//	one.insert(one.end(), 1);
+	//	vector<int> answer;
+	//	answer.insert(answer.end(), 1);
 	//
-	//				Summ(temp, big, currentsumm);
-	//				temp = currentsumm;
-	//				currentsumm.clear();
+	//	while (big != 2) {
+	//
+	//		Prepair_for_Mult(array2, answer, result);
+	//		NormalLenght(array1, result);
+	//		for (int i = 0; i < array1.size(); i++) {
+	//			if (array1[i] > result[i]) {
+	//				big = 1;
+	//				break;
 	//			}
-	//			
-	//
-	//	    }
-	//		for (int d = small.size() - 1; d >i; d--) {
-	//			temp.insert(temp.end(), 0);
+	//			else if (array1[i] < result[i]) {
+	//				big = 2;
+	//				break;
+	//			}
 	//		}
-	//		currentsumm = result;
+	//		if (big == 2) break;
 	//		result.clear();
-	//		Summ(temp, currentsumm, result);
-	//		temp.clear();
-	//		currentsumm.clear();
+	//		Summ(answer, one, result);
+	//		answer = result;
+	//
+	//		result.clear();
 	//
 	//
-	//
-	//
-	//
-	//
-	////////////////////////////////////////
-	//		/*temp.insert(temp.end(), 0);
-	//		if (nul == 1) {
-	//			temp.insert(temp.end(), 0);
-	//		}
-	//		
-	//
-	//		Summ(result, temp, result);
-	//		temp.clear();*/
-	//      
 	//	}
 	//
-	//
-	//
+	//	Diff(answer, one, result);
 	//	/*cout << endl << "--------------result----------------------------" << endl;
 	//
 	//
 	//	for (int i = 0; i < result.size(); i++) {
-	//	cout << result[i];
+	//		cout << result[i];
 	//	}*/
 	//
 	//
+	//	/*Summ(answer, one, result);
+	//		answer = result;*/
+	//
+	//
 	//}
-	//
-	//
-	//
-	//	
-	//

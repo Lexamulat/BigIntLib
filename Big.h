@@ -16,6 +16,7 @@ void get_num();
 big summ(big &num1, big &num2);
 big diff(big &num1, big &num2, bool &PlaseOfCall);
 big  Prepair_for_Mult(big &num1, big &num2);
+big Division(big &num1, big &num2);
 
 
 private:
