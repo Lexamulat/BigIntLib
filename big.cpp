@@ -246,7 +246,201 @@ big big::diff(big &num1, big &num2, bool &PlaseOfCall) {
 		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	}
 }
-  
+ 
 
 
 
+
+big big::Prepair_for_Mult(big &num1, big &num2) {
+	vector<int> result;
+	int biggest;
+	NormalLenght((*num1.array), (*num2.array));
+	FindBiggest((*num1.array), (*num2.array), biggest);
+
+	if (biggest == 1){
+
+		while ((*num2.array)[0] == 0) {
+			(*num2.array).erase((*num2.array).begin() + 0);
+					}
+			
+					Multiplication((*num1.array), (*num2.array), result);
+
+	}
+	else
+	{
+	
+		while ((*num1.array)[0] == 0)
+						{
+			(*num1.array).erase((*num1.array).begin() + 0);
+						}
+						
+					
+			
+					Multiplication((*num2.array), (*num1.array), result);
+
+	}
+	//TODO think about return znak
+	bool znk;
+	if (((*num1.znak)==0)&&(*num2.znak)==0) {
+		znk = 0;
+	}
+	else {
+		znk = 1;
+	}
+
+	big out(result, znk);
+	return out;
+
+}
+
+
+void big::Multiplication(std::vector<int> big, std::vector<int> small, std::vector<int>& result) {
+
+	vector<int> currentsumm;
+	vector<int> temp;
+	int nul = 0;
+	for (int i = small.size() - 1; i > -1; i--) {
+		if (small[i] == 0) {
+			continue;
+		}
+		else if (small[i] == 1)
+		{
+			temp = big;
+		}
+		else {
+			temp = big;
+
+			for (int j = 0; j < (small[i] - 1); j++) {
+
+				currentsumm=VecSumm(temp, big);
+				temp = currentsumm;
+				currentsumm.clear();
+			}
+
+
+		}
+		for (int d = small.size() - 1; d > i; d--) {
+			temp.insert(temp.end(), 0);
+		}
+		currentsumm = result;
+		result.clear();
+		result=VecSumm(temp, currentsumm);
+		temp.clear();
+		currentsumm.clear();
+
+
+
+
+	}
+}
+
+
+//void Prepair_for_Mult(vector<int>& array1, vector<int>& array2, vector<int>& result) {
+//	result.clear();
+//	NormalLenght(array1, array2);
+//	int big = 0;
+//	for (int i = 0; i < array1.size(); i++) {
+//		if (array1[i] > array2[i]) {
+//			big = 1;
+//			break;
+//		}
+//		else if (array1[i] < array2[i]) {
+//			big = 2;
+//			break;
+//		}
+//	}
+//	///////////////////////////////////////////////////////   find   the biggest num 
+//	if (big == 1) {
+//
+//		while (array2[0] == 0) {
+//			array2.erase(array2.begin() + 0);
+//		}
+//
+//		Multiplication(array1, array2, result);
+//	}
+//	else if (big==2) 
+//	{
+//		
+//			while (array1[0] == 0) 
+//			{
+//				array1.erase(array1.begin() + 0);
+//			}
+//			
+//		
+//
+//		Multiplication(array2, array1, result);
+//	}
+//	else Multiplication(array2, array1, result);
+//
+//}
+
+
+
+
+
+//void Multiplication(vector<int> big, vector<int> small, vector<int>& result) {
+	//	vector<int> currentsumm;
+	//	vector<int> temp;
+	//	int nul = 0;
+	//	for (int i= small.size()-1; i >-1; i--) {
+	//		if (small[i] == 0) {
+	//			continue;
+	//		}
+	//		else if (small[i] == 1)
+	//		{
+	//			temp = big;
+	//		}
+	//		else{
+	//			temp = big;
+	//
+	//			for (int j = 0; j < (small[i] - 1); j++) {
+	//
+	//				Summ(temp, big, currentsumm);
+	//				temp = currentsumm;
+	//				currentsumm.clear();
+	//			}
+	//			
+	//
+	//	    }
+	//		for (int d = small.size() - 1; d >i; d--) {
+	//			temp.insert(temp.end(), 0);
+	//		}
+	//		currentsumm = result;
+	//		result.clear();
+	//		Summ(temp, currentsumm, result);
+	//		temp.clear();
+	//		currentsumm.clear();
+	//
+	//
+	//
+	//
+	//
+	//
+	////////////////////////////////////////
+	//		/*temp.insert(temp.end(), 0);
+	//		if (nul == 1) {
+	//			temp.insert(temp.end(), 0);
+	//		}
+	//		
+	//
+	//		Summ(result, temp, result);
+	//		temp.clear();*/
+	//      
+	//	}
+	//
+	//
+	//
+	//	/*cout << endl << "--------------result----------------------------" << endl;
+	//
+	//
+	//	for (int i = 0; i < result.size(); i++) {
+	//	cout << result[i];
+	//	}*/
+	//
+	//
+	//}
+	//
+	//
+	//
+	//	
+	//

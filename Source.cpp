@@ -53,7 +53,10 @@ void check() {
 
 
 	//разность
-	big out = num1.diff(num1, num2, PlaseOfCall);
+	/*big out = num1.diff(num1, num2, PlaseOfCall);
+	out.get_num();*/
+
+	big out = num1.Prepair_for_Mult(num1, num2);
 	out.get_num();
 
 
