@@ -19,16 +19,41 @@
 
 using namespace std;
 
-void check() {
-	//unique_ptr<big> num1;
-	bool PlaseOfCall = 1;
+string check() {
+	string str;
+
+//char a = '1';//49
+//char b = '9';//57
+//cout << (int)a << endl;
+//cout << (int)b;
+
+
+	cin >> str;
+
+	//while ((str[0]!='+')|| (str[0] != '-')||((int)(str[0]<49)) || ((int)(str[0]>57)))
+	//{
+	//	cout << "incorrect expression\n"
+	//		<< "try again\n";
+	//	cin >> str;
+	//
+	//}
+
+	
+
+
+	return str;
+}
+
+
+void menu() {
+	
 	//big out;
 	string input;
-	
+
 	cout << "enter 1" << endl;
-	cin >> input;
+ input= check();
 	big num1(input);
-	
+
 
 	//num1.set_num(input);
 	cout << endl << "-----------num1--------" << endl;
@@ -36,7 +61,7 @@ void check() {
 
 
 	input.clear();
-	cout <<endl<< "enter 2" << endl;
+	cout << endl << "enter 2" << endl;
 	cin >> input;
 	big num2(input);
 
@@ -61,25 +86,76 @@ void check() {
 	out.get_num();
 */
 
-	//деление
-	/*bool CallAsMod = 0;
-	big out = num1.Division(num1, num2,CallAsMod);
+//деление
+/*bool CallAsMod = 0;
+big out = num1.Division(num1, num2,CallAsMod);
+out.get_num();*/
+
+
+/////mod
+	/*bool CallAsMod = 1;
+	big out = num1.Division(num1, num2, CallAsMod);
 	out.get_num();*/
 
 
-	/////mod
-	bool CallAsMod = 1;
-	big out = num1.Division(num1, num2, CallAsMod);
-	out.get_num();
 
+	int Choise;
+	//while (1) {
+		cout << "Choose Action\n"
+			<< "(1)Summ\n"
+			<< "(2)Diff\n"
+			<< "(3)Mult\n"
+			<< "(4)Div\n"
+			<< "(5)Mod\n"
+			<< "(6)EXIT\n";
 
+		cin >> Choise;
 
+		switch (Choise)
+		{
+		case 1: {
+			big out = num1.summ(num1, num2);
+			out.get_num();
+			break;
+		}
+		case 2: {
+			bool PlaseOfCall = 1;
+			big out = num1.diff(num1, num2, PlaseOfCall);
+			out.get_num();
+			break;
+		}
+		case 3: {
+			big out = num1.Prepair_for_Mult(num1, num2);
+			out.get_num();
+			break;
+		}
+		case 4: {
+			bool CallAsMod = 0;
+			big out = num1.Division(num1, num2, CallAsMod);
+			out.get_num();
+			break;
+		}
+		case 5: {
+			bool CallAsMod = 1;
+			big out = num1.Division(num1, num2, CallAsMod);
+			out.get_num();
+			break;
+		}
+		case 6: {
+			exit(0);
+		}
+		default: {
+			cout << "incorrect expression\n"
+				<< "try again\n";
+		}
+		}
+//	}
 }
 
 
 int main() {
 
-	check();
+	menu();
 	// ƒл€ обнаружени€ утечек пам€ти
 
 	_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_FILE);

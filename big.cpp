@@ -345,6 +345,18 @@ big big::Division(big &num1, big &num2,bool &CallAsMod) {
 		big ans(answer, znk);
 		big result(answer, znk);
 	
+		if ((*num2.znak) == 1) znk = 1;
+
+
+		if ((CallAsMod == 1) && ((*num2.array)[0]) == 1) {
+			vector<int> nul;
+			nul.insert(nul.end(), 0);
+			big null(nul, znk);
+			return null;
+		}
+
+
+
 		while (biggest != 2) {
 			result =Prepair_for_Mult(num2, ans);
 			NormalLenght(*num1.array, *result.array);
@@ -369,25 +381,22 @@ big big::Division(big &num1, big &num2,bool &CallAsMod) {
 		}
 		if (CallAsMod == 0) {
 			result = diff(ans, ones, PlaceOfCall);
-
 			if ((((*num1.znak) == 0) && ((*num2.znak) == 0)) || (((*num1.znak) == 1) && ((*num2.znak) == 1)))
 			{
 				*result.znak = 0;
 			}
 			else *result.znak = 1;
+
+			
 			return result;
 		}
+		// MOD
 		else {
 		
 			result = diff(ans, ones, PlaceOfCall);
 			ans = Prepair_for_Mult(num2, result);
 			result = diff(num1, ans, PlaceOfCall);
-
-			//if ((((*num1.znak) == 0) && ((*num2.znak) == 0)) || (((*num1.znak) == 1) && ((*num2.znak) == 1)))
-			//{
-			//	*result.znak = 0;
-			//}
-			//else *result.znak = 1;
+			*result.znak = znk;
 			return result;
 		}
 
