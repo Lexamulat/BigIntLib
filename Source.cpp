@@ -21,24 +21,35 @@ using namespace std;
 
 string check() {
 	string str;
-
+	bool  err = 1;
+	int count;
 //char a = '1';//49
 //char b = '9';//57
 //cout << (int)a << endl;
 //cout << (int)b;
 
+	//|| ((int)(str[0]>48)) || ((int)(str[0]<56)
 
-	cin >> str;
 
-	//while ((str[0]!='+')|| (str[0] != '-')||((int)(str[0]<49)) || ((int)(str[0]>57)))
-	//{
-	//	cout << "incorrect expression\n"
-	//		<< "try again\n";
-	//	cin >> str;
-	//
-	//}
+	/*cin >> str;
+	cout << (int)str[0] << endl;
 
+	while (!((str[0]=='+')|| (str[0] == '-')|| ((int)(str[0]>48))  || ((int)(str[0]<56))))
+	{
+		cout << "incorrect expression\n"
+			<< "try again\n";
+		cin >> str;
 	
+	}
+
+	while(err)
+	for (int i = 0; i < str.length(); i++) {
+		if () {
+		
+		}
+	
+	}
+	*/
 
 
 	return str;
