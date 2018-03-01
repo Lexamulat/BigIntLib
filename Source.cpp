@@ -62,9 +62,15 @@ void check() {
 */
 
 	//деление
-	big out = num1.Division(num1, num2);
-	out.get_num();
+	/*bool CallAsMod = 0;
+	big out = num1.Division(num1, num2,CallAsMod);
+	out.get_num();*/
 
+
+	/////mod
+	bool CallAsMod = 1;
+	big out = num1.Division(num1, num2, CallAsMod);
+	out.get_num();
 
 
 

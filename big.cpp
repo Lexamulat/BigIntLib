@@ -332,7 +332,7 @@ void big::Multiplication(std::vector<int> big, std::vector<int> small, std::vect
 }
 
 
-big big::Division(big &num1, big &num2) {
+big big::Division(big &num1, big &num2,bool &CallAsMod) {
 	//условно считаем что первое число больше второго
 	bool PlaceOfCall = 0;
 	vector<int> one;
@@ -367,70 +367,70 @@ big big::Division(big &num1, big &num2) {
 	
 	
 		}
-	
-		result =diff(ans, ones, PlaceOfCall);
-		/*cout << endl << "--------------result----------------------------" << endl;
-	
-	
-		for (int i = 0; i < result.size(); i++) {
-			cout << result[i];
-		}*/
-	
-	
-		/*Summ(answer, one, result);
-			answer = result;*/
-	
-	
-	
-		return result;
+		if (CallAsMod == 0) {
+			result = diff(ans, ones, PlaceOfCall);
 
+			if ((((*num1.znak) == 0) && ((*num2.znak) == 0)) || (((*num1.znak) == 1) && ((*num2.znak) == 1)))
+			{
+				*result.znak = 0;
+			}
+			else *result.znak = 1;
+			return result;
+		}
+		else {
+		
+			result = diff(ans, ones, PlaceOfCall);
+			ans = Prepair_for_Mult(num2, result);
+			result = diff(num1, ans, PlaceOfCall);
+
+			//if ((((*num1.znak) == 0) && ((*num2.znak) == 0)) || (((*num1.znak) == 1) && ((*num2.znak) == 1)))
+			//{
+			//	*result.znak = 0;
+			//}
+			//else *result.znak = 1;
+			return result;
+		}
 
 }
 
-//void Division(vector<int>& array1, vector<int>& array2, vector<int>& result) {
-	//	//условно считаем что первое число больше второго
-	//	vector<int> one;
-	//	int big = 0;
-	//
-	//	one.insert(one.end(), 1);
-	//	vector<int> answer;
-	//	answer.insert(answer.end(), 1);
-	//
-	//	while (big != 2) {
-	//
-	//		Prepair_for_Mult(array2, answer, result);
-	//		NormalLenght(array1, result);
-	//		for (int i = 0; i < array1.size(); i++) {
-	//			if (array1[i] > result[i]) {
-	//				big = 1;
-	//				break;
-	//			}
-	//			else if (array1[i] < result[i]) {
-	//				big = 2;
-	//				break;
-	//			}
-	//		}
-	//		if (big == 2) break;
-	//		result.clear();
-	//		Summ(answer, one, result);
-	//		answer = result;
-	//
-	//		result.clear();
-	//
-	//
-	//	}
-	//
-	//	Diff(answer, one, result);
-	//	/*cout << endl << "--------------result----------------------------" << endl;
-	//
-	//
-	//	for (int i = 0; i < result.size(); i++) {
-	//		cout << result[i];
-	//	}*/
-	//
-	//
-	//	/*Summ(answer, one, result);
-	//		answer = result;*/
-	//
-	//
-	//}
+ /*big big:: Mod(big &num1, big &num2) {
+	
+		vector<int> one;
+		int big = 0;
+	
+		one.insert(one.end(), 1);
+		vector<int> answer;
+		answer.insert(answer.end(), 1);
+	
+		while (big != 2) {
+	
+			Prepair_for_Mult(array2, answer, result);
+			NormalLenght(array1, result);
+			for (int i = 0; i < array1.size(); i++) {
+				if (array1[i] > result[i]) {
+					big = 1;
+					break;
+				}
+				else if (array1[i] < result[i]) {
+					big = 2;
+					break;
+				}
+			}
+			if (big == 2) break;
+			result.clear();
+			Summ(answer, one, result);
+			answer = result;
+	
+			result.clear();
+	
+	
+		}
+	
+		Diff(answer, one, result);
+		answer = result;
+		Prepair_for_Mult(array2, answer, result);
+		answer = result;
+		Diff(array1,answer,result);
+	
+	
+	}*/
