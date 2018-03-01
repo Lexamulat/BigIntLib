@@ -21,7 +21,7 @@ using namespace std;
 
 string check() {
 	string str;
-	bool  err = 1;
+	int  err = 1;
 	int count;
 //char a = '1';//49
 //char b = '9';//57
@@ -31,7 +31,7 @@ string check() {
 	//|| ((int)(str[0]>48)) || ((int)(str[0]<56)
 
 
-	/*cin >> str;
+	cin >> str;
 	cout << (int)str[0] << endl;
 
 	while (!((str[0]=='+')|| (str[0] == '-')|| ((int)(str[0]>48))  || ((int)(str[0]<56))))
@@ -42,14 +42,18 @@ string check() {
 	
 	}
 
-	while(err)
-	for (int i = 0; i < str.length(); i++) {
-		if () {
-		
+	while (err!=0) {
+		err = 0;
+		for (int i = 1; i < str.length(); i++) {
+			if ((((int)str[i]) < 48) || (((int)str[i]) > 57)) {
+				err++;
+				cout << "incorrect expression\n"
+					<< "try again\n";
+				str = check();
+			}
+
 		}
-	
 	}
-	*/
 
 
 	return str;
